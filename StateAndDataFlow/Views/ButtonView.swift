@@ -12,7 +12,6 @@ struct ButtonView: View {
     let title: String
     let color: Color
 
-    
     var body: some View {
         Button(action: action) {
             Text(title)

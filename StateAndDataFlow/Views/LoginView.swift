@@ -13,7 +13,6 @@ struct LoginView: View {
     
     var body: some View {
         ZStack {
-
             GradientView()
             
             VStack {
@@ -21,10 +20,12 @@ struct LoginView: View {
                     TextField("Enter your name", text: $name)
                         .multilineTextAlignment(.center)
                         .font(.title)
+                    
                     Text(name.count.formatted())
                         .foregroundColor(name.count < 3 ? .red : .green)
                         .font(.title)
                 }
+                
                 Button(action: login) {
                     HStack {
                         Image(systemName: "checkmark.circle")
@@ -35,7 +36,6 @@ struct LoginView: View {
             }
             .padding()
         }
-
     }
     
     private func login() {
