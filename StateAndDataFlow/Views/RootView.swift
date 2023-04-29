@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct RootView: View {
-    @StateObject private var storage = Storage.shared
+    @StateObject private var storage = StorageManager.shared
     
     var body: some View {
         Group {
-            if !storage.userName.isEmpty {
+            if !storage.fetch().name.isEmpty {
                 ContentView()
             } else {
                 LoginView()

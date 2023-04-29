@@ -8,25 +8,34 @@
 import SwiftUI
 
 struct LoginView: View {
-    @EnvironmentObject private var storage: Storage
+    @EnvironmentObject private var storage: StorageManager
     @State private var name = ""
     
     var body: some View {
-        VStack {
-            HStack {
-                TextField("Enter your name", text: $name)
-                    .multilineTextAlignment(.center)
-                Text(name.count.formatted())
-                    .foregroundColor(name.count < 3 ? .red : .green)
-            }
-            Button(action: login) {
+        ZStack {
+
+            GradientView()
+            
+            VStack {
                 HStack {
-                    Image(systemName: "checkmark.circle")
-                    Text("Ok")
+                    TextField("Enter your name", text: $name)
+                        .multilineTextAlignment(.center)
+                        .font(.title)
+                    Text(name.count.formatted())
+                        .foregroundColor(name.count < 3 ? .red : .green)
+                        .font(.title)
                 }
-            }.disabled(name.count < 3 ? true : false)
+                Button(action: login) {
+                    HStack {
+                        Image(systemName: "checkmark.circle")
+                        Text("Ok")
+                            .font(.title2)
+                    }
+                }.disabled(name.count < 3 ? true : false)
+            }
+            .padding()
         }
-        .padding()
+
     }
     
     private func login() {
