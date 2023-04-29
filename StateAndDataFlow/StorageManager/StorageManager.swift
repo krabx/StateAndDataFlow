@@ -10,9 +10,10 @@ import SwiftUI
 
 final class StorageManager: ObservableObject {
     static let shared = StorageManager()
-    private init() {}
     
     @AppStorage("user") var userInfo: Data?
+    
+    private init() {}
     
     func save(_ user: User) {
         guard let data = try? JSONEncoder().encode(user) else { return }
