@@ -9,11 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var timer = TimeCounter()
-    @EnvironmentObject private var userSettings: UserSettings
+    @EnvironmentObject private var storage: Storage
     
     var body: some View {
         VStack {
-            Text("Hi, \(userSettings.name)")
+            Text("Hi, \(storage.userName)")
                 .font(.largeTitle)
                 .padding(.top, 100)
             Text(timer.counter.formatted())
@@ -31,15 +31,15 @@ struct ContentView: View {
     }
     
     private func logOut() {
-        userSettings.name = ""
-        userSettings.isLoggedIn = false
+        let user = User(name: "")
+        storage.save(user)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(UserSettings())
+            .environmentObject(Storage.shared)
     }
 }
 

@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct LoginView: View {
+    @EnvironmentObject private var storage: Storage
     @State private var name = ""
-    @State private var countChars = 0
-    @State private var buttonEnable = false
-    @EnvironmentObject private var userSettings: UserSettings
     
     var body: some View {
         VStack {
@@ -33,8 +31,8 @@ struct LoginView: View {
     
     private func login() {
         if !name.isEmpty {
-            userSettings.name = name
-            userSettings.isLoggedIn.toggle()
+            let user = User(name: name)
+            storage.save(user)
         }
     }
 }
